@@ -1,0 +1,7 @@
+{
+  "name": "Usina Play",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
