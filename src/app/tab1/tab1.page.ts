@@ -79,4 +79,18 @@ export class Tab1Page {
         break;
     }
   }
+
+  botoesTopo(tipo: string){
+    switch (tipo) {
+      case 'corpo':
+        // this.navCtrl.navigateForward('/meu-corpo');
+        console.log('Foi para', tipo)
+        break;
+
+      case 'objetivos':
+        // this.navCtrl.navigateForward('/objetivos-conquistas');
+        console.log('Foi para', tipo)
+        break;
+    }
+  }
 }

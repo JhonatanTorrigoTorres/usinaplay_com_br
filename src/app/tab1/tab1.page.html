@@ -45,10 +45,10 @@
     <div class="flex">
       <ion-col class="dados-usuario">
         <div class="fundo-imagem">
-          <img class="img-usuario" src="/assets/imagem_usuario.png">
+          <img class="img-usuario" [src]="this.usuario.imagem != '' ? '/assets/' + this.usuario.imagem : '/assets/imagem_user.png'">
         </div>
         <ion-col style="margin: auto auto auto 5%;">
-          <h6 class="h6-nome-perfil">Jhonatan Torrigo</h6>
+          <h6 class="h6-nome-perfil">{{this.usuario.nome}}</h6>
           <h6 class="h6-nivel"
             [ngClass]="{'roxo':  this.usuario.nivel == 'Roxo', 'laranja':  this.usuario.nivel == 'Laranja'}">Nível
             {{this.usuario.nivel}}</h6>
@@ -57,11 +57,11 @@
     </div>
     <div class="modulo-btns">
       <ion-col class="btn-objetivo-corpo">
-        <div style="display: flex;">
+        <div (click)="botoesTopo('corpo')" style="display: flex;">
           <img class="img-geral" src="/assets/icon_corpo.png">
           <h6 class="btns">MEU CORPO</h6>
         </div>
-        <div style="display: flex;">
+        <div (click)="botoesTopo('objetivos')" style="display: flex;">
           <img class="img-geral" src="/assets/icon_trofeu.png">
           <h6 class="btns" style="margin-left: 0;">OBJETIVOS E CONQUISTAS</h6>
         </div>
