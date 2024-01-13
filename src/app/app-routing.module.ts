@@ -4,12 +4,12 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/tabs/home',
+    redirectTo: '/home',
     pathMatch: 'full' 
   },
   {
-    path: 'tab1',
-    loadChildren: () => import('./tab1/tab1.module').then(m => m.Tab1PageModule)
+    path: 'home',
+    loadChildren: () => import('./pages/home/home.module').then(m => m.Tab1PageModule)
   }
 ];
 @NgModule({

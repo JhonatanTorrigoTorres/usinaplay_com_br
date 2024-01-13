@@ -13,7 +13,7 @@ export class TreinosCarrosselComponent  implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.tipo);
+    
   }
 
   novotreino() {
