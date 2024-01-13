@@ -33,8 +33,8 @@
       </ion-buttons>
       <img class="img-logo" src="/assets/logo_usinaplay.png">
       <ion-buttons slot="end" class="button-badge btn-notificacao">
-        <img class="img-notificacao" src="/assets/icon_notificacao.png">
-        <ion-badge class="icone-badge"></ion-badge>
+        <img (click)="botoesTopo('notificacao')" class="img-notificacao" src="/assets/icon_notificacao.png">
+        <ion-badge [ngClass]="{'nao-notificacao':  !this.temNotificacao}" class="icone-badge"></ion-badge>
       </ion-buttons>
     </ion-toolbar>
   </ion-header>

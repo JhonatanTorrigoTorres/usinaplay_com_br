@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-home',
@@ -12,6 +13,17 @@ export class HomePage {
     imagem: 'imagem_usuario.png',
     nivel: 'Roxo'
   };
+
+  public notificacoes = [
+    {
+      nome: 'Treinar supino hoje!',
+      conteudo: 'Olá, hoje você tem treino de supino, não esqueça!'
+    },
+    {
+      nome: 'Treinar yoga hoje!',
+      conteudo: 'Olá, hoje você tem treino de yoga, não esqueça!'
+    }
+  ];
 
   public dados = {
     treino: 'PERSONAL ONLINE',
@@ -50,46 +62,73 @@ export class HomePage {
     ],
     conteudo: 'CONTEÚDOS'
   };
+
+  public temNotificacao: boolean = false;
+
   constructor(
     private navCtrl: NavController,
+    private location: Location
   ) { }
 
+  ngOnInit() {
+    if (this.notificacoes.length > 0) {
+      this.temNotificacao = true;
+      console.log('Há notificações!');
+    } else {
+      this.temNotificacao = false;
+      console.log('Não há notificações!');
+    }
+  }
+
+  reloadPage() {
+    this.location.replaceState('/home');
+    window.location.reload();
+  }
 
   navigateTo(tipo: string) {
 
     switch (tipo) {
       case 'Home':
-        // this.navCtrl.navigateForward('/home');
-        console.log('Foi para', tipo)
+        this.reloadPage();
+        console.log('Foi para', tipo);
         break;
 
       case 'Treinos':
         // this.navCtrl.navigateForward('/treinos');
-        console.log('Foi para', tipo)
+        console.log('Foi para', tipo);
         break;
 
       case 'Ajuda':
         // this.navCtrl.navigateForward('/ajuda');
-        console.log('Foi para', tipo)
+        console.log('Foi para', tipo);
         break;
 
       case 'Sair':
         // this.navCtrl.navigateForward('/sair');
-        console.log('Foi para', tipo)
+        console.log('Foi para', tipo);
         break;
     }
   }
 
-  botoesTopo(tipo: string){
+  botoesTopo(tipo: string) {
     switch (tipo) {
       case 'corpo':
         // this.navCtrl.navigateForward('/meu-corpo');
-        console.log('Foi para', tipo)
+        console.log('Foi para', tipo);
         break;
 
       case 'objetivos':
         // this.navCtrl.navigateForward('/objetivos-conquistas');
-        console.log('Foi para', tipo)
+        console.log('Foi para', tipo);
+        break;
+
+      case 'notificacao':
+        if (this.temNotificacao) {
+          this.notificacoes = [];
+          this.temNotificacao = false;
+        }
+        // this.navCtrl.navigateForward('/notificacoes');
+        console.log('Foi para', tipo);
         break;
     }
   }
