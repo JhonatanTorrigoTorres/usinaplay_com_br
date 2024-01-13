@@ -1,0 +1,11 @@
+{
+  "appId": "usinaplay.com.br",
+  "appName": "usinaplay",
+  "webDir": "www",
+  "server": {
+    "androidScheme": "https"
+  },
+  "cordova": {
+    "plugins": {}
+  }
+}

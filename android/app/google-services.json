@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "571213521215",
+    "project_id": "usina-play-9e288",
+    "storage_bucket": "usina-play-9e288.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:571213521215:android:3c37a053e4e0243466738a",
+        "android_client_info": {
+          "package_name": "usinaplay.com.br"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChESC2Ag9VYa3uRz0MgUpLpxcUTqBqssI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
