@@ -1,76 +1,144 @@
 ion-header {
+  font-family: system-ui;
 
-    ion-toolbar {
-        --background:#202020;
+  ion-toolbar {
+    --background: #202020;
 
-        ion-title {
-            font-size: 16px;
-            font-weight: 600;
-            text-align: center;
-            align-items: center;
-        }
-
-        ion-icon {
-            font-size: .9em;
-            color: black;
-        }
+    .btn-notificacao {
+      width: 60px;
+      background-color: #1C1C1C;
+      justify-content: center;
+      margin-right: 2%;
+      border-radius: 27px;
+      height: 60px;
     }
+
+    ion-title {
+      text-align: center;
+    }
+
+    .img-logo {
+      width: 100px;
+      height: 70px;
+      margin: auto;
+      display: flex;
+      justify-content: center;
+    }
+
+    .img-notificacao {
+      width: 40px;
+      height: 40px;
+      border-radius: 100px;
+      padding: 10px;
+      background-color: black;
+      margin-bottom: 9px;
+    }
+  }
 }
 
+.lista-menu-hamburguer {
+  --background: black;
+  --border-style: none;
+  margin-top: 20px;
+}
 
 ion-content {
   --background: black;
-}
+  font-family: system-ui;
+  font-weight: 700;
 
-.img-usuario {
+  .img-usuario {
     height: 70px !important;
     width: 70px !important;
     border-radius: 60px;
-    object-fit: cover;
+    margin: -3px auto auto auto;
   }
-  
-  .h6-nome-perfil {
-    color: white;
-    font-weight: 400;
-    font-size: 12px;
-    margin-left: 2%;
-    margin-top: 9px;
-    margin-bottom: 0px;
-    width: 130px;
-    max-width: 200px;
-  }
-  
-  @media screen and (max-width: 365px) {
-    .h6-nome-perfil {
-      max-width: 100px;
+
+  .topo-pagina {
+    background-color: #202020;
+    border-radius: 0 0 50px 50px;
+
+    .flex {
+      display: flex;
+      width: 100%;
+      padding-bottom: 3px;
     }
-  }
-  
-  .h6-nome-usuario {
-    font-weight: 300;
-    color: #267FE7;
-    font-size: 10px;
-    margin-left: 2%;
-    margin-top: 4px;
-  }
-  
-  .h6-dias-weup {
-    color: white;
-    font-weight: 300;
-    font-size: 8px;
-    margin-top: 6px;
-    margin-left: 2%;
-    max-width: 87px;
-  }
 
-  .flex{ 
-    display: flex;
-    width: 100%;
-    padding-bottom: 3px;
+    .modulo-btns {
+      display: flex;
+      width: 80%;
+      background-color: #1C1C1C;
+      border-radius: 100px;
+      padding: 10px;
+      margin: auto;
 
-    .info-usuario{
+      .btn-objetivo-corpo {
+        margin-left: 5%;
+        min-width: 100px;
+        margin-top: 9px;
+        display: flex;
+        justify-content: center;
+        background-color: #161616;
+        border-radius: 100px;
+        padding: 10px;
+        margin: -5px auto auto auto;
+
+        .img-geral {
+          border-radius: 60px;
+          background-color: #C26709;
+          padding: 1px;
+          margin: auto 5px auto auto;
+          width: 20px;
+          height: 20px;
+        }
+
+        .btns {
+          font-size: 8px;
+          margin: auto 20px auto auto;
+          color: #C26709;
+        }
+      }
+    }
+
+    .dados-usuario {
+      max-width: 30%;
+      display: flex;
       margin-left: 5%;
-      min-width: 100px;
-      margin-top: 9px;
+
+      .fundo-imagem {
+        background-color: #1C1C1C;
+        min-width: 85px;
+        display: flex;
+        padding: 8px;
+        border-radius: 100px
+      }
+
+      .h6-nome-perfil {
+        color: white;
+        font-weight: 700;
+        font-size: 15px;
+        margin-left: 2%;
+        margin-top: 9px;
+        margin-bottom: 0px;
+        width: 130px;
+        max-width: 200px;
+      }
+
+      .h6-nivel {
+        font-weight: 500;
+        color: #267FE7;
+        font-size: 10px;
+        margin-left: 2%;
+        margin-top: 4px;
+      }
+
+      .roxo {
+        color: #6A36E8;
+      }
+
+      .laranja {
+        color: #C26709;
+      }
     }
   }
+}
