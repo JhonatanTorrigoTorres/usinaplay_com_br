@@ -1,3 +1,39 @@
-<p>
-  treinos-carrossel works!
-</p>
+<section class="section-treinos" [ngClass]="{'conteudos':  tipo == 'CONTEÚDOS'}">
+  <div class="titulo-categoria">
+    <h6 class="h6-tipo">{{tipo}}</h6>
+    <img *ngIf="tipo == 'PERSONAL ONLINE'" class="img-geral" src="/assets/icon_add.png">
+    <h6 class="h6-novidade" *ngIf="tipo == 'PROGRAMAS'">NOVO</h6>
+  </div>
+
+  <div class="box-treinos">
+    <div *ngIf="tipo == 'PERSONAL ONLINE'" class="item">
+      <img (click)="novotreino()" src="/assets/imagem_novotreino.png" class="img-treinos">
+    </div>
+
+    <div *ngFor="let treinos of quantidade_treinos" class="item">
+      <img (click)="acessatreino(treinos.id)"
+        [src]="treinos.imagem != '' ? '/assets/' + treinos.imagem : '/assets/imagem_treino.png'" class="img-treinos">
+      <h6 class="h6-titulo-treino">{{treinos.nome}}</h6>
+    </div>
+
+    <div *ngFor="let programas of quantidade_programas" class="item">
+      <img (click)="acessaprograma(programas.id)"
+        [src]="programas.imagem != '' ? '/assets/' + programas.imagem : '/assets/imagem_treino.png'"
+        class="img-treinos">
+      <h6 *ngIf="!programas.concluido" class="h6-programa-andamento">CONTINUAR TREINANDO</h6>
+      <h6 [ngClass]="{ 'concluido': programas.concluido }" class="h6-titulo-programa">{{programas.nome}}</h6>
+    </div>
+
+
+    <div *ngIf="tipo == 'CONTEÚDOS'" class="item" style="padding: 4px;">
+      <div class="box-principal-conteudo">
+        <div class="box-conteudo"></div>
+      </div>
+    </div>
+    <div *ngIf="tipo == 'CONTEÚDOS'" class="item" style="padding: 4px;">
+      <div class="box-principal-conteudo">
+        <div class="box-conteudo"></div>
+      </div>
+    </div>
+  </div>
+</section>
