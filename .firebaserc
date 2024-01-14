@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "usina-play-9e288": {
+      "hosting": {
+        "app": [
+          "usina-play-9e288"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "usina-play-9e288"
+  }
+}
