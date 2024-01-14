@@ -1,6 +1,14 @@
 import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { Location } from '@angular/common';
+import { environment } from 'src/environments/environment';
+
+import { initializeApp } from 'firebase/app';
+import { getFirestore, collection, getDocs } from 'firebase/firestore';
+
+const firebaseConfig = environment.firebase;
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
 @Component({
   selector: 'app-home',
@@ -9,55 +17,35 @@ import { Location } from '@angular/common';
 })
 export class HomePage {
   public usuario = {
-    nome: 'Jhonatan Torres',
-    imagem: 'imagem_usuario.png',
-    nivel: 'Roxo'
+    id: '',
+    nome: '',
+    imagem: '',
+    nivel: ''
   };
 
   public notificacoes = [
     {
-      nome: 'Treinar supino hoje!',
-      conteudo: 'Olá, hoje você tem treino de supino, não esqueça!'
+      titulo: '',
+      conteudo: ''
     },
-    {
-      nome: 'Treinar yoga hoje!',
-      conteudo: 'Olá, hoje você tem treino de yoga, não esqueça!'
-    }
   ];
 
-  public dados = {
+  public planilhas = {
     treino: 'PERSONAL ONLINE',
     treinos: [
       {
-        id: 1,
-        imagem: 'imagem_yoga.png',
-        nome: 'YOGA EXPRESS'
-      },
-      {
-        id: 2,
-        imagem: 'imagem_supino.png',
-        nome: 'SUPINO RETO'
+        id: '',
+        imagem: '',
+        nome: ''
       }
     ],
     programa: 'PROGRAMAS',
     programas: [
       {
-        id: 1,
-        imagem: 'imagem_treino.png',
-        nome: 'LEVANTAMENTO DE PESO',
-        concluido: false
-      },
-      {
-        id: 2,
-        imagem: 'imagem_supino.png',
-        nome: 'SUPINO RETO',
-        concluido: true
-      },
-      {
-        id: 3,
-        imagem: 'imagem_yoga.png',
-        nome: 'YOGA EXPRESS',
-        concluido: false
+        id: '',
+        imagem: '',
+        nome: '',
+        concluido: true,  
       },
     ],
     conteudo: 'CONTEÚDOS'
@@ -71,13 +59,82 @@ export class HomePage {
   ) { }
 
   ngOnInit() {
-    if (this.notificacoes.length > 0) {
-      this.temNotificacao = true;
-      console.log('Há notificações!');
-    } else {
-      this.temNotificacao = false;
-      console.log('Não há notificações!');
-    }
+    this.consultaCliente();
+    this.consultaNotificacao();
+    this.consultaTreinos();
+    this.consultaProgramas();
+  }
+
+  async consultaCliente() {
+    const consultaCliente = await getDocs(collection(db, "usuarios_app"));
+    consultaCliente.forEach((doc) => {
+      const data = doc.data();
+      this.usuario.id = doc.id;
+      this.usuario.nome = data['nome'];
+      this.usuario.nivel = data['nivel'];
+      this.usuario.imagem = data['imagem'];
+      console.log(`${doc.id} => ${JSON.stringify(data)}`);
+    });
+  }
+
+  async consultaNotificacao() {
+    const consultaNotificacao = await getDocs(collection(db, "notificacoes"));
+    consultaNotificacao.forEach((doc) => {
+      const data = doc.data();
+      if (Object.keys(data).length > 0) {
+        this.temNotificacao = true;
+        this.notificacoes[0].titulo = data['titulo'];
+        this.notificacoes[0].conteudo = data['conteudo'];
+      } else {
+        this.temNotificacao = false;
+      }
+      console.log(`${doc.id} => ${JSON.stringify(data)}`);
+    });
+  }
+
+  async consultaTreinos() {
+    const consultaTreinos = await getDocs(collection(db, "usuarios_app/tyliftrQw8uttSbbmNdm/treinos"));
+
+    this.planilhas.treinos = [];
+
+    consultaTreinos.forEach((doc) => {
+      const data = doc.data();
+      if (Object.keys(data).length > 0) {
+        const treino = {
+          id: doc.id,
+          nome: data['nome'],
+          imagem: data['imagem']
+        };
+        this.planilhas.treinos.push(treino);
+      } else {
+        this.planilhas.treinos = [];
+        console.log('Nenhum treino encontrado.');
+      }
+      console.log(`${doc.id} => ${JSON.stringify(data)}`);
+    });
+  }
+
+  async consultaProgramas() {
+    const consultaProgramas = await getDocs(collection(db, "usuarios_app/tyliftrQw8uttSbbmNdm/programas"));
+
+    this.planilhas.programas = [];
+
+    consultaProgramas.forEach((doc) => {
+      const data = doc.data();
+      if (Object.keys(data).length > 0) {
+        const programa = {
+          id: doc.id,
+          nome: data['nome'],
+          imagem: data['imagem'],
+          concluido: data['concluido']
+        };
+        this.planilhas.programas.push(programa);
+      } else {
+        this.planilhas.programas = [];
+        console.log('Nenhum programa encontrado.');
+      }
+      console.log(`${doc.id} => ${JSON.stringify(data)}`);
+    });
   }
 
   reloadPage() {
