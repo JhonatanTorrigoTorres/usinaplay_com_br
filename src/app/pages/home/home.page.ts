@@ -45,7 +45,7 @@ export class HomePage {
         id: '',
         imagem: '',
         nome: '',
-        concluido: true,  
+        concluido: true,
       },
     ],
     conteudo: 'CONTEÚDOS'
@@ -60,9 +60,6 @@ export class HomePage {
 
   ngOnInit() {
     this.consultaCliente();
-    this.consultaNotificacao();
-    this.consultaTreinos();
-    this.consultaProgramas();
   }
 
   async consultaCliente() {
@@ -73,12 +70,16 @@ export class HomePage {
       this.usuario.nome = data['nome'];
       this.usuario.nivel = data['nivel'];
       this.usuario.imagem = data['imagem'];
+
+      this.consultaNotificacao();
+      this.consultaTreinos();
+      this.consultaProgramas();
       console.log(`${doc.id} => ${JSON.stringify(data)}`);
     });
   }
 
   async consultaNotificacao() {
-    const consultaNotificacao = await getDocs(collection(db, "notificacoes"));
+    const consultaNotificacao = await getDocs(collection(db, "usuarios_app/" + this.usuario.id + "/notificacoes"));
     consultaNotificacao.forEach((doc) => {
       const data = doc.data();
       if (Object.keys(data).length > 0) {
@@ -93,7 +94,7 @@ export class HomePage {
   }
 
   async consultaTreinos() {
-    const consultaTreinos = await getDocs(collection(db, "usuarios_app/tyliftrQw8uttSbbmNdm/treinos"));
+    const consultaTreinos = await getDocs(collection(db, "usuarios_app/" + this.usuario.id + "/treinos"));
 
     this.planilhas.treinos = [];
 
@@ -115,7 +116,7 @@ export class HomePage {
   }
 
   async consultaProgramas() {
-    const consultaProgramas = await getDocs(collection(db, "usuarios_app/tyliftrQw8uttSbbmNdm/programas"));
+    const consultaProgramas = await getDocs(collection(db, "usuarios_app/" + this.usuario.id + "/programas"));
 
     this.planilhas.programas = [];
 
